@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import NumberFormat from "react-number-format";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,9 +35,9 @@ export default function GlobalData() {
   useEffect(() => {
     async function fetchGlobalData() {
       setDataLoading(true);
-
+      try{
       const apiResponse = await fetch(
-        "https://api.thevirustracker.com/free-api?global=stats"
+        "https://api.thevirustracker.com/free-api?global=stats" , { mode: 'no-cors'}
       );
 
       const dataFromAPI = await apiResponse.json();
@@ -43,6 +45,9 @@ export default function GlobalData() {
       console.log("Data returned");
       setGlobalData(dataFromAPI);
       setDataLoading(false) ;
+
+    }
+    catch(e){console.log("Not Available")}
     }
 
     fetchGlobalData();
@@ -61,7 +66,7 @@ export default function GlobalData() {
               gutterBottom
               style={{ color: "red", fontWeight: "bold" }}
             >
-              {loading}
+            <CircularProgress color="red" />
             </Typography>
 
             <Typography
@@ -81,7 +86,7 @@ export default function GlobalData() {
               gutterBottom
               style={{ color: "orange", fontWeight: "bold" }}
             >
-              {loading}
+              <CircularProgress color="orange" />
             </Typography>
 
             <Typography
@@ -101,7 +106,7 @@ export default function GlobalData() {
               gutterBottom
               style={{ color: "green", fontWeight: "bold" }}
             >
-              {loading}
+              <CircularProgress color="green" />
             </Typography>
 
             <Typography
@@ -120,7 +125,7 @@ export default function GlobalData() {
               gutterBottom
               style={{ color: "black", fontWeight: "bold" }}
             >
-              {loading}
+              <CircularProgress color="black" />
             </Typography>
 
             <Typography
