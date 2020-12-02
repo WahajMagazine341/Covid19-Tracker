@@ -1,0 +1,37 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: React App Deployed
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Install NodeJS
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 12 
+      
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+        
+      - name: Build React App
+        run: yarn build
+        env:
+          CI: ""
+      
+      - name: Install Surge
+        run: npm install --global surge
+        
+      - name: Deploy to Surge
+        run: surge ./build covidtracker-wahajmubeen.surge.sh --token ${{ secrets.SURGE_TOKEN}}
