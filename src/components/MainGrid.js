@@ -24,7 +24,7 @@ export default function MainGrid() {
     <div className={classes.root}>
       <br />
       <Grid container spacing={0}>
-        <Grid item xs={3}>
+        <Grid item xs={12} md={3} >
           <Paper style={{ backgorundColor: "white" }} className={classes.paper}>
             <h2 style={{ color: "black" }}>
               <strong>Global Data</strong>
@@ -33,7 +33,7 @@ export default function MainGrid() {
           </Paper>
         </Grid>
 
-        <Grid item xs={9}>
+        <Grid item xs={12} md={9}>
           <Paper
             style={{ backgroundColor: "#D3E8FF" }}
             className={classes.paper}
