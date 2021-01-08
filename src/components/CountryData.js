@@ -157,12 +157,12 @@ export default function CountryData() {
         <Table className={classes.table} aria-label="custom pagination table">
           <TableHead style={{backgroundColor:"#469EFC"}}>
             <TableRow>
-              <TableCell align="left"><h2>Country</h2></TableCell>
-              <TableCell  align="left"><h2>Flag</h2></TableCell>
-              <TableCell  align="left"><h2>Active Cases</h2></TableCell>
-              <TableCell  align="left"><h2>Deaths</h2></TableCell>
-              <TableCell  align="left"><h2>Recovered</h2></TableCell>
-              <TableCell  align="left"><h2>Total Cases</h2></TableCell>
+              <TableCell style={{color:"White"}} align="left"><h2>Country</h2></TableCell>
+              <TableCell style={{color:"White"}} align="left"><h2>Flag</h2></TableCell>
+              <TableCell style={{color:"White"}} align="left"><h2>Active Cases</h2></TableCell>
+              <TableCell style={{color:"White"}} align="left"><h2>Deaths</h2></TableCell>
+              <TableCell style={{color:"White"}} align="left"><h2>Recovered</h2></TableCell>
+              <TableCell style={{color:"White"}} align="left"><h2>Total Cases</h2></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
