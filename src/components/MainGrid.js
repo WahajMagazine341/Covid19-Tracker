@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import GlobalData from "./GlobalData";
+import CountryData from "./CountryData";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    backgroundColor: "#ccccff"
+    // backgroundColor: "#ccccff"
   },
 }));
 
@@ -22,22 +23,26 @@ export default function MainGrid() {
   return (
     <div className={classes.root}>
       <br />
-      <Grid container spacing={2}>
+      <Grid container spacing={0}>
         <Grid item xs={3}>
-        <Paper className={classes.paper}>
-          <h2 style={{color:"black"}}><strong>Global Data</strong></h2>
+          <Paper style={{ backgorundColor: "white" }} className={classes.paper}>
+            <h2 style={{ color: "black" }}>
+              <strong>Global Data</strong>
+            </h2>
             <GlobalData />
           </Paper>
         </Grid>
-       
-        <Grid item xs={7}>
-          <Paper className={classes.paper}> <h4>Country Data*</h4></Paper>
-        </Grid> 
-        <Grid item xs={2}>
-        <Paper className={classes.paper}><h3><strong> Corona Virus </strong></h3> </Paper>
+
+        <Grid item xs={9}>
+          <Paper
+            style={{ backgroundColor: "#D3E8FF" }}
+            className={classes.paper}
+          >
+            <h2 style={{ color: "black" }}>Country Data</h2>
+            <CountryData />
+          </Paper>
+        </Grid>
       </Grid>
-      </Grid>
-     
     </div>
   );
 }
