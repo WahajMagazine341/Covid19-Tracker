@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import NumberFormat from "react-number-format";
+import { Line } from "react-chartjs-2";
 
 import Typography from "@material-ui/core/Typography";
 
@@ -107,6 +108,13 @@ const useStyles2 = makeStyles({
 
 export default function CountryData() {
   const classes = useStyles2();
+  const [chartData, setChartData] = useState({});
+  //for graph
+  //const [conutryName, setCountryName]= useState([]);
+  //const [cases, setCases]= useState([]);
+  var countryName = [];
+  var cases = [];
+
   const [countryData, setCountryData] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -138,11 +146,45 @@ export default function CountryData() {
         console.log(dataFromAPI);
         console.log("Data returned");
         setCountryData(dataFromAPI);
+
+        for (var i = 0; i < dataFromAPI.length; i++) {
+          //console.log("loop =", i);
+
+          let name = dataFromAPI[i];
+          countryName[i] = name.country;
+        }
+
+        console.log("NAMES", countryName);
+
+        for (var i = 0; i < dataFromAPI.length; i++) {
+          //console.log("loop =", i);
+
+          let name = dataFromAPI[i];
+          cases[i] = name.todayCases;
+        }
+        console.log("Cases", cases);
+
+        //setCountryName(dataFromAPI.country);
+        //console.log("names:", dataFromAPI.country);
+        //setCases(dataFromAPI.cases);
+        //console.log("cases:", dataFromAPI.cases);
         //setGlobalData(dataFromAPI);
         //console.log("TODAY:", dataFromAPI.todayCases);
         //console.log("TODAY:", globalData.todayCases);
 
         //setDataLoading(false);
+        setChartData({
+          type: "Line",
+          labels: countryName,
+          datasets: [
+            {
+              label: "Active Cases",
+              data: cases,
+              backgroundColor: "#58D68D ",
+              borderWidth: 1,
+            },
+          ],
+        });
       } catch (e) {
         console.log("Not Available");
       }
@@ -155,14 +197,26 @@ export default function CountryData() {
     <div>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="custom pagination table">
-          <TableHead style={{backgroundColor:"#469EFC"}}>
+          <TableHead style={{ backgroundColor: "#469EFC" }}>
             <TableRow>
-              <TableCell style={{color:"White"}} align="left"><h2>Country</h2></TableCell>
-              <TableCell style={{color:"White"}} align="left"><h2>Flag</h2></TableCell>
-              <TableCell style={{color:"White"}} align="left"><h2>Active Cases</h2></TableCell>
-              <TableCell style={{color:"White"}} align="left"><h2>Deaths</h2></TableCell>
-              <TableCell style={{color:"White"}} align="left"><h2>Recovered</h2></TableCell>
-              <TableCell style={{color:"White"}} align="left"><h2>Total Cases</h2></TableCell>
+              <TableCell style={{ color: "White" }} align="left">
+                <h2>Country</h2>
+              </TableCell>
+              <TableCell style={{ color: "White" }} align="left">
+                <h2>Flag</h2>
+              </TableCell>
+              <TableCell style={{ color: "White" }} align="left">
+                <h2>Active Cases</h2>
+              </TableCell>
+              <TableCell style={{ color: "White" }} align="left">
+                <h2>Deaths</h2>
+              </TableCell>
+              <TableCell style={{ color: "White" }} align="left">
+                <h2>Recovered</h2>
+              </TableCell>
+              <TableCell style={{ color: "White" }} align="left">
+                <h2>Total Cases</h2>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -178,7 +232,12 @@ export default function CountryData() {
                   {obj.country}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  <img width="20" height="20" src={obj.countryInfo.flag} alt={obj.country} />
+                  <img
+                    width="20"
+                    height="20"
+                    src={obj.countryInfo.flag}
+                    alt={obj.country}
+                  />
                 </TableCell>
                 <TableCell component="th" scope="row">
                   {obj.active}
@@ -221,6 +280,26 @@ export default function CountryData() {
           </TableFooter>
         </Table>
       </TableContainer>
+      <br /> <br /> <br />
+      <Paper>
+      <Line
+        data={chartData}
+        options={{
+          responsive: true,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        }}
+        height={500}
+        width={1000}
+      />
+      </Paper>
     </div>
   );
 }
