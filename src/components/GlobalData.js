@@ -4,6 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import NumberFormat from "react-number-format";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import AnimatedNumber from "react-animated-numbers"
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       height: theme.spacing(16),
     },
+
   },
 }));
 
@@ -149,7 +152,7 @@ export default function GlobalData() {
  
     return (
       <div className={classes.root}>
-        <Paper elevation={4} style={{backgroundColor:"#FFE3E3" }}>
+        <Paper elevation={4} style={{backgroundColor:"#FFE3E3",  }}>
           <div className={classesTypography.root}>
             
 

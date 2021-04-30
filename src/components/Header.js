@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import header from './Assets/header.svg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +41,7 @@ export default function Header() {
           </Typography>
         </Toolbar>
       </AppBar>
+      {/* <img src={header} width="500px" height="500px"/> */}
     </div>
   );
 }

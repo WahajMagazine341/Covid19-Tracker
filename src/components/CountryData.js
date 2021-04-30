@@ -164,15 +164,7 @@ export default function CountryData() {
         }
         console.log("Cases", cases);
 
-        //setCountryName(dataFromAPI.country);
-        //console.log("names:", dataFromAPI.country);
-        //setCases(dataFromAPI.cases);
-        //console.log("cases:", dataFromAPI.cases);
-        //setGlobalData(dataFromAPI);
-        //console.log("TODAY:", dataFromAPI.todayCases);
-        //console.log("TODAY:", globalData.todayCases);
-
-        //setDataLoading(false);
+   
         setChartData({
           type: "Line",
           labels: countryName,
